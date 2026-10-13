@@ -55,3 +55,15 @@ tenvv
 
 # Logs
 *.log
+
+
+# API keys and secrets
+.env.*
+!.env.example
+wb_api_key.txt
+
+# Temporary evaluation/debug files
+temp_ragas/
+
+# Python virtual environments
+tenv/

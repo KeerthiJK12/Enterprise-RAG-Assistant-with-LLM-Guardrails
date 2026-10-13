@@ -1,5 +1,6 @@
 from langgraph.graph import StateGraph, END
 from langgraph.checkpoint.memory import MemorySaver
+
 from app.agents.state import AgentState
 from app.agents.nodes.planner import planner_node
 from app.agents.nodes.retriever import retrieve_node
@@ -15,6 +16,7 @@ workflow.add_node("planner", planner_node)
 workflow.add_node("retriever", retrieve_node)
 workflow.add_node("responder", generate_node)
 
+
 # 3. Define the Edges & Routing Logic
 def route_planner(state: AgentState):
     """
@@ -22,7 +24,9 @@ def route_planner(state: AgentState):
     """
     if state["current_query"] == "CONVERSATIONAL":
         return "responder"
+
     return "retriever"
+
 
 workflow.set_entry_point("planner")
 

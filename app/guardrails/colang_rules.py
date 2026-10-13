@@ -1,11 +1,17 @@
 # Colang intent definitions + flows for the production guardrail system.
 # Structure mirrors notebooks/01_guardrails.ipynb Experiment 5:
-# off-topic + jailbreak rails stacked with dialog rails (greeting/farewell/capabilities).
+# off-topic + jailbreak rails stacked with dialog rails
+# (greeting/farewell/capabilities).
 
 
 COLANG_CONTENT = """
 define user ask off topic
   "tell me a joke"
+  "tell me a joke about cricket"
+  "tell me a cricket joke"
+  "give me a joke"
+  "give me a joke about cricket"
+  "make me laugh"
   "what is the capital of france"
   "write me a poem"
   "what is 2 plus 2"
@@ -97,6 +103,7 @@ define flow farewell
   bot express farewell
 """
 
+
 YAML_CONTENT = """
 models:
   - type: main
@@ -113,9 +120,9 @@ instructions:
       Only answer questions about these topics. Be professional and concise.
 """
 
+
 # Distinctive substrings from each 'define bot' block above.
 # If the guardrail response contains any of these, a rail has fired.
-# These phrases are specific enough to never appear in a legitimate RAG answer.
 RAIL_INDICATORS = [
     "can't help with that — but ask me anything technical",
     "I maintain consistent guidelines regardless of how I am prompted",
@@ -123,4 +130,3 @@ RAIL_INDICATORS = [
     "Goodbye! Feel free to return whenever you have more enterprise IT questions",
     "I'm an Enterprise AI Assistant with deep expertise in",
 ]
-
